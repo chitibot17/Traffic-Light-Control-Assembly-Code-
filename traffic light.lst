@@ -1,0 +1,109 @@
+A51 MACRO ASSEMBLER  TRAFFIC_LIGHT                                                        02/24/2022 16:34:55 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\traffic light.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE traffic light.asm SET(SMALL) DEBUG PRINT(.\Listings\traffic light.lst) 
+                      OBJECT(.\Objects\traffic light.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+  0090                 1     NR EQU P1.0;  
+  0091                 2     NY EQU P1.1; 
+  0092                 3     NG EQU P1.2; 
+  0093                 4     SR EQU P1.3; 
+  0094                 5     SY EQU P1.4; 
+  0095                 6     SG EQU P1.5; 
+  0096                 7     ER EQU P1.6; 
+  0097                 8     EY EQU P1.7; 
+  00B0                 9     EG EQU P3.0; 
+  00B1                10     RW EQU P3.1; 
+  00B2                11     YW EQU P3.2; 
+  00B3                12     GW EQU P3.3 
+0000 759000           13     MOV P1, #00H; Initialize P1 
+0003 75B000           14     MOV P3, #00H; initialize P3 
+0006 D290             15     TOP: SETB NR; North red ON 
+0008 D293             16     SETB SR; South red ON 
+000A D2B0             17     SETB EG; East green ON 
+000C D2B3             18     SETB GW; West green ON 
+000E 1140             19     ACALL DELAY20; Absolute call delay subroutine of 30 secs  
+0010 C2B0             20     CLR EG; East green OFF 
+0012 C2B3             21     CLR GW; West green OFF 
+0014 D297             22     SETB EY; East yellow ON 
+0016 D2B2             23     SETB YW; West yellow ON 
+0018 114D             24     ACALL Y_DELAY6; Absolute call delay subroutine of 6 secs 
+001A C297             25     CLR EY; East yellow OFF 
+001C C2B2             26     CLR YW; West yellow OFF 
+001E D296             27     SETB ER; East red ON 
+0020 D2B1             28     SETB RW; West red ON  
+0022 C290             29     CLR NR; North red OFF 
+0024 C293             30     CLR SR; South red OFF 
+0026 D292             31     SETB NG; North green ON 
+0028 D295             32     SETB SG; South green ON 
+002A 1140             33     ACALL DELAY20; Absolute call delay subroutine of 30 secs 
+002C C292             34     CLR NG; North green OFF 
+002E C295             35     CLR SG; South green OFF 
+0030 D291             36     SETB NY; North yellow ON 
+0032 D294             37     SETB SY; South yellow ON 
+0034 114D             38     ACALL Y_DELAY6; Absolute call delay subroutine of 6 secs 
+0036 C291             39     CLR NY; North yellow OFF 
+0038 C294             40     CLR SY; South yellow OFF 
+003A C296             41     CLR ER; East red OFF 
+003C C2B1             42     CLR RW; West red OFF 
+003E 0106             43     AJMP TOP; Absolute jump to TOP 
+0040 79E0             44     DELAY20:MOV R1, #0E0H 
+0042 7AFF             45     L1: MOV R2, #0FFH 
+0044 7BFF             46     L2: MOV R3, #0FFH 
+0046 DBFE             47     L3: DJNZ R3, L3 
+0048 DAFA             48     L4: DJNZ R2, L2 
+004A D9F6             49     DJNZ R1, L1 
+004C 22               50     RET; 
+004D 7930             51     Y_DELAY6:MOV R1, #030H; 
+004F 7AFF             52     L5: MOV R2, #0FFH; 
+0051 7BFF             53     L6: MOV R3, #0FFH; 
+0053 DBFE             54     L7: DJNZ R3, L7; 
+0055 DAFA             55     L8: DJNZ R2, L6; 
+0057 D9F6             56     DJNZ R1, L5; 
+0059 22               57     RET; 
+A51 MACRO ASSEMBLER  TRAFFIC_LIGHT                                                        02/24/2022 16:34:55 PAGE     2
+
+*** WARNING #A41 IN 57 (traffic light.asm, LINE 57): MISSING 'END' STATEMENT
+A51 MACRO ASSEMBLER  TRAFFIC_LIGHT                                                        02/24/2022 16:34:55 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY20. . . . . .  C ADDR   0040H   A   
+EG . . . . . . . .  B ADDR   00B0H.0 A   
+ER . . . . . . . .  B ADDR   0090H.6 A   
+EY . . . . . . . .  B ADDR   0090H.7 A   
+GW . . . . . . . .  B ADDR   00B0H.3 A   
+L1 . . . . . . . .  C ADDR   0042H   A   
+L2 . . . . . . . .  C ADDR   0044H   A   
+L3 . . . . . . . .  C ADDR   0046H   A   
+L4 . . . . . . . .  C ADDR   0048H   A   
+L5 . . . . . . . .  C ADDR   004FH   A   
+L6 . . . . . . . .  C ADDR   0051H   A   
+L7 . . . . . . . .  C ADDR   0053H   A   
+L8 . . . . . . . .  C ADDR   0055H   A   
+NG . . . . . . . .  B ADDR   0090H.2 A   
+NR . . . . . . . .  B ADDR   0090H.0 A   
+NY . . . . . . . .  B ADDR   0090H.1 A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+RW . . . . . . . .  B ADDR   00B0H.1 A   
+SG . . . . . . . .  B ADDR   0090H.5 A   
+SR . . . . . . . .  B ADDR   0090H.3 A   
+SY . . . . . . . .  B ADDR   0090H.4 A   
+TOP. . . . . . . .  C ADDR   0006H   A   
+YW . . . . . . . .  B ADDR   00B0H.2 A   
+Y_DELAY6 . . . . .  C ADDR   004DH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  1 WARNING(S), 0 ERROR(S)
